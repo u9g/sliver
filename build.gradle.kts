@@ -84,7 +84,7 @@ tasks.generateDevelopmentBundle {
 
 allprojects {
     // Publishing API:
-    // ./gradlew :ForkTest-API:publish[ToMavenLocal]
+    // ./gradlew :Sliver-API:publish[ToMavenLocal]
     publishing {
         repositories {
             maven {
