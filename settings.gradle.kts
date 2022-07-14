@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "forktest"
+rootProject.name = "sliver"
 
-include("forktest-api", "forktest-server")
+include("sliver-api", "sliver-server")
