@@ -1,0 +1,98 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Fri, 15 Jul 2022 22:25:17 -0400
+Subject: [PATCH] Add UnloadWorldResult
+
+
+diff --git a/src/main/java/dev/u9g/FunctionResult.java b/src/main/java/dev/u9g/FunctionResult.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..f9970b8ddcc6dac057d0ae1a042c85f491d3fba2
+--- /dev/null
++++ b/src/main/java/dev/u9g/FunctionResult.java
+@@ -0,0 +1,5 @@
++package dev.u9g;
++
++public interface FunctionResult {
++    boolean isSuccessful();
++}
+diff --git a/src/main/java/dev/u9g/UnloadWorldResult.java b/src/main/java/dev/u9g/UnloadWorldResult.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..7c6abe665b96f0ed772fd30e1f0ab777eedfacc5
+--- /dev/null
++++ b/src/main/java/dev/u9g/UnloadWorldResult.java
+@@ -0,0 +1,23 @@
++package dev.u9g;
++
++public enum UnloadWorldResult implements FunctionResult {
++    WORLD_IS_NULL,
++    WORLD_IS_NOT_LOADED,
++    IS_MAIN_WORLD,
++    WORLD_HAS_PLAYERS,
++    IS_CANCELLED,
++    SUCCESS(true);
++
++    private boolean isSuccessful = false;
++
++    UnloadWorldResult() {}
++
++    UnloadWorldResult(boolean isSuccessful) {
++        this.isSuccessful = isSuccessful;
++    }
++
++    @Override
++    public boolean isSuccessful() {
++        return isSuccessful;
++    }
++}
+diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
+index dcfd22862c79ae01ca7707d9abf0a71cc0d4ad9d..1d0d04c7ff6fbe901cca233749fa001294047896 100644
+--- a/src/main/java/org/bukkit/Bukkit.java
++++ b/src/main/java/org/bukkit/Bukkit.java
+@@ -774,6 +774,10 @@ public final class Bukkit {
+      * @param save whether to save the chunks before unloading
+      * @return true if successful, false otherwise
+      */
++    // Sliver start - UnloadWorldResult
++    public static dev.u9g.UnloadWorldResult sliver_unloadWorld(@NotNull String name, boolean save) { return server.sliver_unloadWorld(name, save); } // Sliver - UnloadWorldResult
++    @Deprecated
++    // Sliver end
+     public static boolean unloadWorld(@NotNull String name, boolean save) {
+         return server.unloadWorld(name, save);
+     }
+@@ -785,6 +789,10 @@ public final class Bukkit {
+      * @param save whether to save the chunks before unloading
+      * @return true if successful, false otherwise
+      */
++    // Sliver start - UnloadWorldResult
++    public static dev.u9g.UnloadWorldResult sliver_unloadWorld(@NotNull World world, boolean save) { return server.sliver_unloadWorld(world, save); } // Sliver - UnloadWorldResult
++    @Deprecated
++    // Sliver end
+     public static boolean unloadWorld(@NotNull World world, boolean save) {
+         return server.unloadWorld(world, save);
+     }
+diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
+index 7a3a2ff605e06e42ba2a0263e2c50eed5c24f8e9..3cac93689a11f435e6dacdc4ce7be52105706c4d 100644
+--- a/src/main/java/org/bukkit/Server.java
++++ b/src/main/java/org/bukkit/Server.java
+@@ -644,6 +644,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+      * @param save whether to save the chunks before unloading
+      * @return true if successful, false otherwise
+      */
++    // Sliver start - UnloadWorldResult
++    public dev.u9g.UnloadWorldResult sliver_unloadWorld(@NotNull String name, boolean save);
++    @Deprecated
++    // Sliver end
+     public boolean unloadWorld(@NotNull String name, boolean save);
+ 
+     /**
+@@ -653,6 +657,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+      * @param save whether to save the chunks before unloading
+      * @return true if successful, false otherwise
+      */
++    // Sliver start - UnloadWorldResult
++    public dev.u9g.UnloadWorldResult sliver_unloadWorld(@NotNull World world, boolean save);
++    @Deprecated
++    // Sliver end
+     public boolean unloadWorld(@NotNull World world, boolean save);
+ 
+     /**
