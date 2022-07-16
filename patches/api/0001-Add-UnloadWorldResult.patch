@@ -45,7 +45,7 @@ index 0000000000000000000000000000000000000000..7c6abe665b96f0ed772fd30e1f0ab777
 +    }
 +}
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index dcfd22862c79ae01ca7707d9abf0a71cc0d4ad9d..1d0d04c7ff6fbe901cca233749fa001294047896 100644
+index a87399fa4838d4b2c1ff9cc35d433ae76cc149bf..e9c1a2ec2e4510f1efc48709657501dd4f2ff426 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -774,6 +774,10 @@ public final class Bukkit {
@@ -71,10 +71,10 @@ index dcfd22862c79ae01ca7707d9abf0a71cc0d4ad9d..1d0d04c7ff6fbe901cca233749fa0012
          return server.unloadWorld(world, save);
      }
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 7a3a2ff605e06e42ba2a0263e2c50eed5c24f8e9..3cac93689a11f435e6dacdc4ce7be52105706c4d 100644
+index 79b26045a68ebb9b01e5bd06abbccaaef5489777..402c461c10957534459b96b0194b9e41bf21c4c4 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -644,6 +644,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -641,6 +641,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       * @param save whether to save the chunks before unloading
       * @return true if successful, false otherwise
       */
@@ -85,7 +85,7 @@ index 7a3a2ff605e06e42ba2a0263e2c50eed5c24f8e9..3cac93689a11f435e6dacdc4ce7be521
      public boolean unloadWorld(@NotNull String name, boolean save);
  
      /**
-@@ -653,6 +657,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -650,6 +654,10 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
       * @param save whether to save the chunks before unloading
       * @return true if successful, false otherwise
       */

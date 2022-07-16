@@ -1,0 +1,114 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Sat, 16 Jul 2022 01:23:01 -0400
+Subject: [PATCH] Add TeleportResult
+
+
+diff --git a/src/main/java/dev/u9g/TeleportResult.java b/src/main/java/dev/u9g/TeleportResult.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..3ab42293fbb3571d90fce808875821706d7aa078
+--- /dev/null
++++ b/src/main/java/dev/u9g/TeleportResult.java
+@@ -0,0 +1,23 @@
++package dev.u9g;
++
++public enum TeleportResult implements FunctionResult {
++    ENTITY_IS_DEAD,
++    ENTITY_IN_VEHICLE,
++    ENTITY_IS_REMOVED,
++    PLAYER_DISCONNECTED,
++    PLAYER_TELEPORT_CANCELLED,
++    SUCCESS(true);
++
++    private boolean isSuccessful = false;
++
++    TeleportResult() {}
++
++    TeleportResult(boolean isSuccessful) {
++        this.isSuccessful = isSuccessful;
++    }
++
++    @Override
++    public boolean isSuccessful() {
++        return isSuccessful;
++    }
++}
+diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
+index 8bc6876c82935988436597161fa0ec94c032174b..a3f69780ebbefb98c1a2c3dad355ed3c503ac84a 100644
+--- a/src/main/java/org/bukkit/entity/Entity.java
++++ b/src/main/java/org/bukkit/entity/Entity.java
+@@ -132,6 +132,10 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param location New location to teleport this entity to
+      * @return <code>true</code> if the teleport was successful
+      */
++    // Sliver start - TeleportResult
++    public dev.u9g.TeleportResult sliver_teleport(@NotNull Location location);
++    @Deprecated
++    // Sliver end
+     public boolean teleport(@NotNull Location location);
+ 
+     /**
+@@ -142,6 +146,10 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param cause The cause of this teleportation
+      * @return <code>true</code> if the teleport was successful
+      */
++    // Sliver start - TeleportResult
++    public dev.u9g.TeleportResult sliver_teleport(@NotNull Location location, @NotNull TeleportCause cause);
++    @Deprecated
++    // Sliver end
+     public boolean teleport(@NotNull Location location, @NotNull TeleportCause cause);
+ 
+     /**
+@@ -151,6 +159,10 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param destination Entity to teleport this entity to
+      * @return <code>true</code> if the teleport was successful
+      */
++    // Sliver start - TeleportResult
++    public dev.u9g.TeleportResult sliver_teleport(@NotNull Entity destination);
++    @Deprecated
++    // Sliver end
+     public boolean teleport(@NotNull Entity destination);
+ 
+     /**
+@@ -161,6 +173,10 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param cause The cause of this teleportation
+      * @return <code>true</code> if the teleport was successful
+      */
++    // Sliver start - TeleportResult
++    public dev.u9g.TeleportResult sliver_teleport(@NotNull Entity destination, @NotNull TeleportCause cause);
++    @Deprecated
++    // Sliver end
+     public boolean teleport(@NotNull Entity destination, @NotNull TeleportCause cause);
+ 
+     // Paper start
+@@ -169,6 +185,11 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param loc Location to teleport to
+      * @return A future that will be completed with the result of the teleport
+      */
++    // Sliver start - TeleportResult
++    @NotNull
++    public default java.util.concurrent.CompletableFuture<dev.u9g.TeleportResult> sliver_teleportAsync(@NotNull Location loc) { return sliver_teleportAsync(loc, TeleportCause.PLUGIN); }
++    @Deprecated
++    // Sliver end
+     @NotNull
+     public default java.util.concurrent.CompletableFuture<Boolean> teleportAsync(@NotNull Location loc) {
+         return teleportAsync(loc, TeleportCause.PLUGIN);
+@@ -179,6 +200,18 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+      * @param cause Reason for teleport
+      * @return A future that will be completed with the result of the teleport
+      */
++    // Sliver start - TeleportResult
++    @NotNull
++    public default java.util.concurrent.CompletableFuture<dev.u9g.TeleportResult> sliver_teleportAsync(@NotNull Location loc, @NotNull TeleportCause cause) {
++        java.util.concurrent.CompletableFuture<dev.u9g.TeleportResult> future = new java.util.concurrent.CompletableFuture<>();
++        loc.getWorld().getChunkAtAsyncUrgently(loc).thenAccept((chunk) -> future.complete(sliver_teleport(loc, cause))).exceptionally(ex -> {
++            future.completeExceptionally(ex);
++            return null;
++        });
++        return future;
++    }
++    @Deprecated
++    // Sliver end
+     @NotNull
+     public default java.util.concurrent.CompletableFuture<Boolean> teleportAsync(@NotNull Location loc, @NotNull TeleportCause cause) {
+         java.util.concurrent.CompletableFuture<Boolean> future = new java.util.concurrent.CompletableFuture<>();

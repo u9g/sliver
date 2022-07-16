@@ -5,10 +5,10 @@ Subject: [PATCH] Add UnloadWorldResult
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index ba4578fb4a2d861a6ffbb0ec022db31d9d7cc2be..bdd1985bbfd66a9d6a833a77bce158201b2e33ad 100644
+index 8a248e34fce1e04de4460f98b7627df495c66af1..3f6352716fcc113d60b8ebe82c51cf898ed324b6 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -1264,6 +1264,7 @@ public final class CraftServer implements Server {
+@@ -1271,6 +1271,7 @@ public final class CraftServer implements Server {
          return internal.getWorld();
      }
  
@@ -16,7 +16,7 @@ index ba4578fb4a2d861a6ffbb0ec022db31d9d7cc2be..bdd1985bbfd66a9d6a833a77bce15820
      @Override
      public boolean unloadWorld(String name, boolean save) {
          return this.unloadWorld(this.getWorld(name), save);
-@@ -1271,29 +1272,36 @@ public final class CraftServer implements Server {
+@@ -1278,29 +1279,36 @@ public final class CraftServer implements Server {
  
      @Override
      public boolean unloadWorld(World world, boolean save) {
@@ -58,7 +58,7 @@ index ba4578fb4a2d861a6ffbb0ec022db31d9d7cc2be..bdd1985bbfd66a9d6a833a77bce15820
          }
  
          try {
-@@ -1310,7 +1318,7 @@ public final class CraftServer implements Server {
+@@ -1317,7 +1325,7 @@ public final class CraftServer implements Server {
  
          this.worlds.remove(world.getName().toLowerCase(java.util.Locale.ENGLISH));
          console.levels.remove(handle.dimension());

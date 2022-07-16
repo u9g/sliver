@@ -5,7 +5,7 @@ Subject: [PATCH] Build changes
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index dd8f449dddbe0838835ae8f8d5033aa422db403d..c77a8db52ea5657bfc22e413cbc646d06b3009d7 100644
+index 0282e3b75470e1a68ea1fc228082483514ba432e..2fca7568de520cdcac8f827184894fb325c76443 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -9,8 +9,12 @@ plugins {
@@ -23,7 +23,7 @@ index dd8f449dddbe0838835ae8f8d5033aa422db403d..c77a8db52ea5657bfc22e413cbc646d0
      // Paper start
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
-@@ -59,7 +63,7 @@ tasks.jar {
+@@ -60,7 +64,7 @@ tasks.jar {
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
@@ -32,7 +32,7 @@ index dd8f449dddbe0838835ae8f8d5033aa422db403d..c77a8db52ea5657bfc22e413cbc646d0
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
-@@ -147,7 +151,7 @@ fun TaskContainer.registerRunTask(
+@@ -148,7 +152,7 @@ fun TaskContainer.registerRunTask(
      name: String,
      block: JavaExec.() -> Unit
  ): TaskProvider<JavaExec> = register<JavaExec>(name) {
