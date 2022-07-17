@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Sun, 17 Jul 2022 03:05:07 -0400
+Subject: [PATCH] Add Player#getFishHook
+
+
+diff --git a/src/main/java/org/bukkit/entity/HumanEntity.java b/src/main/java/org/bukkit/entity/HumanEntity.java
+index e8b6cfe7e454c666b4d60b702a3b211dab238830..eec963b4cd436dce8fb9f64d0589ca902037baea 100644
+--- a/src/main/java/org/bukkit/entity/HumanEntity.java
++++ b/src/main/java/org/bukkit/entity/HumanEntity.java
+@@ -718,4 +718,10 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder
+      * @param ticks the amount of ticks to lose 1 health
+      */
+     public void setStarvationRate(int ticks);
++    // Sliver start - Player#getFishHook
++    /**
++     * @return the player's fishing hook if they are fishing, otherwise null
++     */
++    @Nullable FishHook getFishHook();
++    // Sliver end
+ }
