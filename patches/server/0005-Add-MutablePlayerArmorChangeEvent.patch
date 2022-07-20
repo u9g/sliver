@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Wed, 20 Jul 2022 00:39:49 -0400
+Subject: [PATCH] Add MutablePlayerArmorChangeEvent
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+index d6ef140bcc35b10f78f2ec2f10c8a153395fc9df..1349e0f8c1aa865c413bfd14d47708aa49dfe70c 100644
+--- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
++++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+@@ -3037,6 +3037,7 @@ public abstract class LivingEntity extends Entity {
+                     final org.bukkit.inventory.ItemStack oldItem = CraftItemStack.asBukkitCopy(itemstack);
+                     final org.bukkit.inventory.ItemStack newItem = CraftItemStack.asBukkitCopy(itemstack1);
+                     new PlayerArmorChangeEvent((Player) this.getBukkitEntity(), PlayerArmorChangeEvent.SlotType.valueOf(enumitemslot.name()), oldItem, newItem).callEvent();
++                    new dev.u9g.events.MutablePlayerArmorChangeEvent((Player) this.getBukkitEntity(), PlayerArmorChangeEvent.SlotType.valueOf(enumitemslot.name()), CraftItemStack.asCraftMirror(itemstack), CraftItemStack.asCraftMirror(itemstack1)).callEvent();
+                 }
+                 // Paper end
+                 if (map == null) {

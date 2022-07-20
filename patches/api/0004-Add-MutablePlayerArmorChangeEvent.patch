@@ -1,0 +1,42 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Wed, 20 Jul 2022 00:40:08 -0400
+Subject: [PATCH] Add MutablePlayerArmorChangeEvent
+
+
+diff --git a/src/main/java/dev/u9g/events/MutablePlayerArmorChangeEvent.java b/src/main/java/dev/u9g/events/MutablePlayerArmorChangeEvent.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..655bfd6e9a39754df6a4b5c93cfc383068f8a8ac
+--- /dev/null
++++ b/src/main/java/dev/u9g/events/MutablePlayerArmorChangeEvent.java
+@@ -0,0 +1,30 @@
++package dev.u9g.events;
++
++import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent;
++import org.bukkit.Material;
++import org.bukkit.entity.Player;
++import org.bukkit.event.HandlerList;
++import org.bukkit.event.player.PlayerEvent;
++import org.bukkit.inventory.ItemStack;
++
++import java.util.Arrays;
++import java.util.Collections;
++import java.util.HashSet;
++import java.util.Set;
++import org.jetbrains.annotations.NotNull;
++import org.jetbrains.annotations.Nullable;
++
++import static org.bukkit.Material.*;
++
++/**
++ * Called when the player themselves change their armor items
++ * <p>
++ * Not currently called for environmental factors though it <strong>MAY BE IN THE FUTURE</strong>
++ */
++public class MutablePlayerArmorChangeEvent extends PlayerArmorChangeEvent {
++    private static final HandlerList HANDLERS = new HandlerList();
++
++    public MutablePlayerArmorChangeEvent(@NotNull Player player, @NotNull SlotType slotType, @Nullable ItemStack oldItem, @Nullable ItemStack newItem) {
++        super(player, slotType, oldItem, newItem);
++    }
++}
