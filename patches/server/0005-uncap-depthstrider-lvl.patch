@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: u9g <git@u9g.dev>
+Date: Thu, 21 Jul 2022 16:28:13 -0400
+Subject: [PATCH] uncap depthstrider lvl
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+index d6ef140bcc35b10f78f2ec2f10c8a153395fc9df..0422a770d069acd54ce336ccb90abb2903d45b4e 100644
+--- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
++++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+@@ -2657,9 +2657,9 @@ public abstract class LivingEntity extends Entity {
+                 float f1 = 0.02F;
+                 float f2 = (float) EnchantmentHelper.getDepthStrider(this);
+ 
+-                if (f2 > 3.0F) {
+-                    f2 = 3.0F;
+-                }
++                //if (f2 > 3.0F) {
++                //    f2 = 3.0F;
++                //}
+ 
+                 if (!this.onGround) {
+                     f2 *= 0.5F;
